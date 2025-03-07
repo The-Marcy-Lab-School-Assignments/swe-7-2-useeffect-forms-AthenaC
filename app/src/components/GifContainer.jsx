@@ -7,16 +7,17 @@ TODO:
 - render the list of fetched gifs (or the defaultGifs) as list items with an `img` inside. Remember to give each list item a unique key!
 - Bonus: if at any point an error is returned, render the default gifs again.
 */
-
-import defaultGifs from '../gifs.json';
-import { getGifsBySearch, getTrendingGifs } from '../adapters/giphyAdapters';
+import { useState, useEffect } from "react";
+import defaultGifs from "../gifs.json";
+import { getGifsBySearch, getTrendingGifs } from "../adapters/giphyAdapters";
 
 const GifContainer = () => {
-    return (
-        <ul>
+  const [gifs, setGifs] = useState("");
 
-        </ul>
-    )
-}
+  getGifsBySearch();
+  getTrendingGifs();
 
-export default GifContainer
+  return <ul>{<li>{}</li>}</ul>;
+};
+
+export default GifContainer;
