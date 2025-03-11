@@ -14,12 +14,13 @@ const baseUrl = "https://api.giphy.com/v1/gifs";
 export const getTrendingGifs = async () => {
   const url = `${baseUrl}/trending?api_key=${API_KEY}&rating=g`;
   const [data, error] = await handleFetch(url);
-  return [data.message.slice(0, 3), error];
+  // console.log(data);
+  return [data.data.slice(0, 3), error];
 };
 
 // Send a fetch request to the /search endpoint with the given term as a query parameter
 export const getGifsBySearch = async (searchTerm) => {
   const url = `${baseUrl}/search?api_key=${API_KEY}&q=${searchTerm}&rating=g`;
   const [data, error] = await handleFetch(url);
-  return [data.message.slice(0, 3), error];
+  return [data.data.slice(0, 3), error];
 };

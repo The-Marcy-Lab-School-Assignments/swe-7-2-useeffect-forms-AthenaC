@@ -12,12 +12,26 @@ import defaultGifs from "../gifs.json";
 import { getGifsBySearch, getTrendingGifs } from "../adapters/giphyAdapters";
 
 const GifContainer = () => {
-  const [gifs, setGifs] = useState("");
+  const [gifs, setGifs] = useState([]);
+  const [error, setError] = useState(null);
 
-  getGifsBySearch();
-  getTrendingGifs();
+  useEffect(() => {
+    const fetchTrending = async () => {
+      const [data, error] = await getTrendingGifs();
+      if (error) console.error(error);
+      setError("Failed to load gifs");
+      if (data) setGifs(data);
+    };
+    fetchTrending();
+  }, []);
 
-  return <ul>{<li>{}</li>}</ul>;
+  return (
+    <ul>
+      {gifs.map((gif) => (
+        <img key={gif.id} src={gif.images.fixed_height.url} alt={gif.title} />
+      ))}
+    </ul>
+  );
 };
 
 export default GifContainer;
