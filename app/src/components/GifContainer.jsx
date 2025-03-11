@@ -7,24 +7,8 @@ TODO:
 - render the list of fetched gifs (or the defaultGifs) as list items with an `img` inside. Remember to give each list item a unique key!
 - Bonus: if at any point an error is returned, render the default gifs again.
 */
-import { useState, useEffect } from "react";
-import defaultGifs from "../gifs.json";
-import { getGifsBySearch, getTrendingGifs } from "../adapters/giphyAdapters";
 
-const GifContainer = () => {
-  const [gifs, setGifs] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchTrending = async () => {
-      const [data, error] = await getTrendingGifs();
-      if (error) console.error(error);
-      setError("Failed to load gifs");
-      if (data) setGifs(data);
-    };
-    fetchTrending();
-  }, []);
-
+const GifContainer = ({ gifs }) => {
   return (
     <ul>
       {gifs.map((gif) => (
