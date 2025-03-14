@@ -37,11 +37,14 @@ const App = () => {
       setError(null);
       return;
     }
+
     const [data, error] = await getGifsBySearch(searchTerm);
+
     if (error) {
       setError("Failed to get results");
       setGifs(defaultGifs.slice(0, 3));
     }
+
     if (data) {
       setGifs(data);
       setError(null);
@@ -57,7 +60,9 @@ const App = () => {
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
         />
+
         <br />
+
         <GifContainer gifs={gifs} />
       </div>
     </div>
