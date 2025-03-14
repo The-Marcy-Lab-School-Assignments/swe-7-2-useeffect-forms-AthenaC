@@ -8,15 +8,14 @@ TODO:
 - Bonus: if at any point an error is returned, render the default gifs again.
 */
 
-import defaultGifs from '../gifs.json';
-import { getGifsBySearch, getTrendingGifs } from '../adapters/giphyAdapters';
+const GifContainer = ({ gifs }) => {
+  return (
+    <ul>
+      {gifs.map((gif) => (
+        <img key={gif.id} src={gif.images.fixed_height.url} alt={gif.title} />
+      ))}
+    </ul>
+  );
+};
 
-const GifContainer = () => {
-    return (
-        <ul>
-
-        </ul>
-    )
-}
-
-export default GifContainer
+export default GifContainer;
